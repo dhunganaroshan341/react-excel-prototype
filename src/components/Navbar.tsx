@@ -50,6 +50,30 @@ export default function Navbar() {
           >
             Excel Embed
           </Link>
+          <Link
+            to="/simple-excel-upload"
+            className={`${base} ${
+              isActive("/simple-excel-upload") ? active : inactive
+            }`}
+          >
+           Simple Excel Upload
+          </Link>
+          <Link
+            to="/excel-upload"
+            className={`${base} ${
+              isActive("/excel-upload") ? active : inactive
+            }`}
+          >
+            Excel Upload
+          </Link>
+          <Link
+            to="/multi-sheet-excel-upload"
+            className={`${base} ${
+              isActive("/multi-sheet-excel-upload") ? active : inactive
+            }`}
+          >
+            Multi Upload
+          </Link>
 
         </div>
 
