@@ -74,6 +74,22 @@ export default function Navbar() {
           >
             Multi Upload
           </Link>
+           <Link
+            to="/advance-sheet"
+            className={`${base} ${
+              isActive("/advance-sheet") ? active : inactive
+            }`}
+          >
+            Advance Sheet
+          </Link>
+          <Link
+            to="/excel-experiment"
+            className={`${base} ${
+              isActive("/excel-experiment") ? active : inactive
+            }`}
+          >
+            Excel Experiment
+          </Link>
 
         </div>
 
