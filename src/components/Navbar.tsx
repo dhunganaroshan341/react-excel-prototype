@@ -18,7 +18,7 @@ export default function Navbar() {
 
         {/* Left brand */}
         <div className="font-semibold text-gray-800">
-          MAW System
+          MAW Excel Demos
         </div>
 
         {/* Navigation */}
@@ -33,14 +33,14 @@ export default function Navbar() {
             Projects
           </Link>
 
-          <Link
+          {/* <Link
             to="/excel"
             className={`${base} ${
               isActive("/excel") ? active : inactive
             }`}
           >
             Excel Grid
-          </Link>
+          </Link> */}
 
           <Link
             to="/excel-embed"
@@ -50,21 +50,21 @@ export default function Navbar() {
           >
             Excel Embed
           </Link>
-          <Link
+          {/* <Link
             to="/simple-excel-upload"
             className={`${base} ${
               isActive("/simple-excel-upload") ? active : inactive
             }`}
           >
            Simple Excel Upload
-          </Link>
+          </Link> */}
           <Link
             to="/excel-upload"
             className={`${base} ${
               isActive("/excel-upload") ? active : inactive
             }`}
           >
-            Excel Upload
+            Upload with Styles
           </Link>
           <Link
             to="/multi-sheet-excel-upload"
@@ -72,7 +72,7 @@ export default function Navbar() {
               isActive("/multi-sheet-excel-upload") ? active : inactive
             }`}
           >
-            Multi Upload
+            Multi Sheets View
           </Link>
            <Link
             to="/advance-sheet"
@@ -88,7 +88,7 @@ export default function Navbar() {
               isActive("/excel-experiment") ? active : inactive
             }`}
           >
-            Excel Experiment
+            Adjustable columns
           </Link>
 
         </div>
