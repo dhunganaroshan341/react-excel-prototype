@@ -41,6 +41,14 @@ export default function Navbar() {
           >
             Excel Grid
           </Link>
+           <Link
+            to="/jobs"
+            className={`${base} ${
+              isActive("/jobs") ? active : inactive
+            }`}
+          >
+            Jobs
+          </Link>
 
           <Link
             to="/excel-embed"

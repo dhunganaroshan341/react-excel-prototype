@@ -8,6 +8,9 @@ import SimpleExcelUpload from "./pages/SimpleExcelUpload";
 import MultiSheetExcelUPload from "./pages/MultiSheetExcelUpload";
 import AdvanceSheet from "./pages/AdvanceSheet";
 import ExcelExperiment from "./pages/ExcelExpirement";
+import Jobs from "./pages/Jobs";
+// import JobNew from "./pages/JobNew";
+import JobDetail from "./pages/JobDetail";
 
 export default function App() {
   return (
@@ -28,6 +31,9 @@ export default function App() {
           <Route path="/multi-sheet-excel-upload" element={<MultiSheetExcelUPload />} />
           <Route path="/advance-sheet" element={<AdvanceSheet />} />
           <Route path="/excel-experiment" element={<ExcelExperiment />} />
+          <Route path="/jobs" element={<Jobs/>} />
+          {/*<Route path="/job-new" element={<Jobs/>} />*/}
+           <Route path="/jobs/:slug" element={<JobDetail />} />
         </Routes>
       </div>
 
