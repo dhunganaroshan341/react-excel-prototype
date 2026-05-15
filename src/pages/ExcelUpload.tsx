@@ -1,49 +1,54 @@
 import { useState } from "react";
+import type { ChangeEvent } from "react";
 import ExcelJS from "exceljs";
 
+type CellData = {
+  value: unknown;
+  style: {
+    bold: boolean;
+    color?: string;
+    bg?: string | null;
+    align?: string;
+    width?: number;
+  };
+};
+
 export default function ExcelExperiment() {
-  const [rows, setRows] = useState<any[]>([]);
-  const [merges, setMerges] = useState<any[]>([]);
+  const [rows, setRows] = useState<CellData[][]>([]);
+  const [merges, setMerges] = useState<string[]>([]);
 
   const handleUpload = async (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: ChangeEvent<HTMLInputElement>
   ) => {
     const file = e.target.files?.[0];
-
     if (!file) return;
 
     const arrayBuffer = await file.arrayBuffer();
 
     const workbook = new ExcelJS.Workbook();
-
     await workbook.xlsx.load(arrayBuffer);
 
     const worksheet = workbook.worksheets[0];
+    if (!worksheet) return;
 
-    const tempRows: any[] = [];
+    const tempRows: CellData[][] = [];
 
-    worksheet.eachRow((row, rowNumber) => {
-      const rowData: any[] = [];
+    worksheet.eachRow((row) => {
+      const rowData: CellData[] = [];
 
       row.eachCell((cell, colNumber) => {
         rowData.push({
           value: cell.value,
-
           style: {
-            bold: cell.font?.bold || false,
-
+            bold: cell.font?.bold ?? false,
             color: cell.font?.color?.argb,
-
             bg:
               cell.fill &&
               "fgColor" in cell.fill
                 ? cell.fill.fgColor?.argb
                 : null,
-
             align: cell.alignment?.horizontal,
-
-            width:
-              worksheet.getColumn(colNumber).width,
+            width: worksheet.getColumn(colNumber).width,
           },
         });
       });
@@ -51,13 +56,10 @@ export default function ExcelExperiment() {
       tempRows.push(rowData);
     });
 
-    // merged cells
-    const mergedRanges = Object.keys(
-      worksheet._merges
-    );
+    const mergedRanges =
+      worksheet.model?.merges ?? [];
 
     setMerges(mergedRanges);
-
     setRows(tempRows);
 
     console.log("MERGES:", mergedRanges);
@@ -77,7 +79,7 @@ export default function ExcelExperiment() {
           <tbody>
             {rows.map((row, rowIndex) => (
               <tr key={rowIndex}>
-                {row.map((cell: any, cellIndex: number) => (
+                {row.map((cell, cellIndex) => (
                   <td
                     key={cellIndex}
                     className="border px-3 py-2"
@@ -85,24 +87,21 @@ export default function ExcelExperiment() {
                       fontWeight: cell.style.bold
                         ? "bold"
                         : "normal",
-
                       backgroundColor: cell.style.bg
                         ? `#${cell.style.bg.slice(2)}`
                         : "white",
-
                       color: cell.style.color
                         ? `#${cell.style.color.slice(2)}`
                         : "black",
-
                       textAlign:
-                        cell.style.align || "left",
-
+                        (cell.style.align as any) ||
+                        "left",
                       minWidth: `${
                         (cell.style.width || 10) * 8
                       }px`,
                     }}
                   >
-                    {cell.value?.toString()}
+                    {cell.value?.toString() ?? ""}
                   </td>
                 ))}
               </tr>
@@ -116,9 +115,7 @@ export default function ExcelExperiment() {
           Merged Cells
         </h2>
 
-        <pre>
-          {JSON.stringify(merges, null, 2)}
-        </pre>
+        <pre>{JSON.stringify(merges, null, 2)}</pre>
       </div>
     </div>
   );
