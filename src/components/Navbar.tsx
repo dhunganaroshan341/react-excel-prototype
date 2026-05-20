@@ -58,7 +58,7 @@ export default function Navbar() {
           >
            Simple Excel Upload
           </Link> */}
-          <Link
+          {/* <Link
             to="/excel-upload"
             className={`${base} ${
               isActive("/excel-upload") ? active : inactive
@@ -81,14 +81,14 @@ export default function Navbar() {
             }`}
           >
             Advance Sheet
-          </Link>
+          </Link> */}
           <Link
             to="/excel-experiment"
             className={`${base} ${
               isActive("/excel-experiment") ? active : inactive
             }`}
           >
-            Adjustable columns
+            Upload Excel File
           </Link>
 
         </div>
