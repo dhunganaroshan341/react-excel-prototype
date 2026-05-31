@@ -8,6 +8,7 @@ import SimpleExcelUpload from "./pages/SimpleExcelUpload";
 import MultiSheetExcelUPload from "./pages/MultiSheetExcelUpload";
 import AdvanceSheet from "./pages/AdvanceSheet";
 import ExcelExperiment from "./pages/ExcelExpirement";
+import UploadFile from "./pages/UploadFile";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/multi-sheet-excel-upload" element={<MultiSheetExcelUPload />} />
           <Route path="/advance-sheet" element={<AdvanceSheet />} />
           <Route path="/excel-experiment" element={<ExcelExperiment />} />
+        <Route path="/upload" element={<UploadFile />} />
         </Routes>
       </div>
 
